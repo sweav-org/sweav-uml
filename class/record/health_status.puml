@@ -1,13 +1,13 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class User {
+@startuml
+class HealthStatus {
   *id: Long
-  +email: String?
-  +password: String?
-  +status: UserStatus
-  +name: String
-  +birthDate: Date
+  +userId: Long
+  +height: Float
+  +weight: Float
+  +age: Int
   +gender: Gender
   ..
   createdAt: Instant
@@ -16,13 +16,6 @@ class User {
   modifiedAt: Instant
   modifiedById: Long
   modifiedByRole: UserRole
-}
-
-enum UserStatus {
-  ACTIVE
-  INACTIVE
-  REGULATED
-  DORMANT
 }
 
 enum Gender {
@@ -36,9 +29,8 @@ enum UserRole {
   USER
 }
 
-User::status --> UserStatus
-User::gender --> Gender
-User::createdByRole --> UserRole
-User::modifiedByRole --> UserRole
+HealthStatus::gender --> Gender
+HealthStatus::createdByRole --> UserRole
+HealthStatus::modifiedByRole --> UserRole
 
 @enduml

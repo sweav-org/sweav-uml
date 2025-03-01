@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class HealthGoal {
+  *id: Int
+  +userId: Int
+  +weight: FLOAT
+  +bmi: FLOAT
+  +activityLevel: ActivityLevel
+  +dailyTargetCalories: Int
+  +dailyexerciseFrequency: Int
+  +exercisePlan: TEXT
+  +diet_plan: TEXT
+  +deadline: DATE
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
+}
+
+enum ActivityLevel {
+  SEDENTARY,
+  LIGHTLY_ACTIVE,
+  MODERATELY_ACTIVE,
+  ACTIVE,
+  VERY_ACTIVE,
+}
+
+HealthGoal::ActivityLevel --> ActivityLevel
+
+@enduml
