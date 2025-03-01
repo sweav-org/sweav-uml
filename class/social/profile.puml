@@ -1,27 +1,56 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class Profile {
+  *id: Long
+  +userId: Long
+  +name: String
+  +description: String?
+  +imagePath: String?
+  +searchable: Boolean
+  +isDirectMessageAllowed: Boolean
+  +presenceStatus: PresenceStatus
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+note right of Profile::description
+  상태 메시지
+end note
+
+note right of Profile::imagePath
+  프로필 이미지 경로
+end note
+
+note right of Profile::searchable
+  검색 허용, 비허용
+end note
+
+note right of Profile::isDirectMessageAllowed
+  DM 허용 유무
+end note
+
+note right of Profile::presenceStatus
+  사용자 임의 설정 상태. ONLINE/OFFLINE
+end note
+
+note right of Profile::searchable
+  검색 허용, 비허용
+end note
+
+enum PresenceStatus {
+  ONLINE
+  OFFLINE
+}
+
+enum UserRole {
+  ADMIN
+  USER
 }
 
 @enduml
