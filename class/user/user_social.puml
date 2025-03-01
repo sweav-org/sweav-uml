@@ -25,7 +25,14 @@ enum SocialType {
   APPLE
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
 UserSocial::socialType --> SocialType
+UserSocial::createdByRole --> UserRole
+UserSocial::modifiedByRole --> UserRole
 
 note right of UserSocial::socialId
   소셜 플랫폼에서 제공하는 고유 사용자 ID

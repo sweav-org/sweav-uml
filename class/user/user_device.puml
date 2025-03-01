@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class UserDevice {
+  *id: Long
+  +userId: Long
+  +pushToken: String?
+  +deviceType: DeviceType
+  +pushProvider: PushProvider
+  +isPushEnabled: Boolean
+  +lastLoggedInAt: Instant
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
+}
+
+enum DeviceType {
+  ANDROID
+  IOS
+  WEB
+}
+
+enum PushProvider {
+  FCM
+  APNS
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+UserDevice::deviceType --> DeviceType
+UserDevice::pushProvider --> PushProvider
+UserDevice::createdByRole --> UserRole
+UserDevice::modifiedByRole --> UserRole
+
+@enduml

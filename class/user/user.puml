@@ -23,6 +23,13 @@ enum UserStatus {
   DORMANT
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
 User::status --> UserStatus
+User::createdByRole --> UserRole
+User::modifiedByRole --> UserRole
 
 @enduml
