@@ -19,6 +19,20 @@ class Profile {
   modifiedByRole: UserRole
 }
 
+enum PresenceStatus {
+  ONLINE
+  OFFLINE
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+Profile::presenceStatus --> PresenceStatus
+Profile::createdByRole --> UserRole
+Profile::modifiedByRole --> UserRole
+
 note right of Profile::description
   상태 메시지
 end note
@@ -42,20 +56,5 @@ end note
 note right of Profile::searchable
   검색 허용, 비허용
 end note
-
-enum PresenceStatus {
-  ONLINE
-  OFFLINE
-}
-
-enum UserRole {
-  ADMIN
-  USER
-}
-
-Profile::presenceStatus --> PresenceStatus
-
-Profile::createdByRole --> UserRole
-Profile::modifiedByRole --> UserRole
 
 @enduml

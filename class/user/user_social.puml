@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class UserSocial {
+  *id: Long
+  +userId: Long
+  +socialId: String
+  +socialType: SocialType
+  +socialEmail: String?
+  +connectedAt: Instant
+  +accessToken: String?
+  +refreshToken: String?
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
+}
+
+enum SocialType {
+  KAKAO
+  GOOGLE
+  APPLE
+}
+
+UserSocial::socialType --> SocialType
+
+note right of UserSocial::socialId
+  소셜 플랫폼에서 제공하는 고유 사용자 ID
+end note
+
+note right of UserSocial::socialEmail
+  소셜 플랫폼에서 제공하는 이메일 주소
+end note
+
+note right of UserSocial::connectedAt
+  해당 소셜 계정이 사용자 계정에 연결된 시점
+end note
+
+@enduml

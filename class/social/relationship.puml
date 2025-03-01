@@ -11,14 +11,6 @@ class Relationship {
   createdByRole: UserRole
 }
 
-note right of Relationship::description
-  상태 메시지
-end note
-
-note right of Relationship::imagePath
-  프로필 이미지 경로
-end note
-
 enum RelationshipStatus {
   FOLLOWING
   BLOCKING
@@ -31,5 +23,13 @@ enum UserRole {
 
 Relationship::status --> RelationshipStatus
 Relationship::createdByRole --> UserRole
+
+note right of Relationship::description
+  상태 메시지
+end note
+
+note right of Relationship::imagePath
+  프로필 이미지 경로
+end note
 
 @enduml

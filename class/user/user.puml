@@ -1,27 +1,28 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class User {
+  *id: Long
+  +email: String?
+  +password: String?
+  +status: UserStatus
+  +name: String
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  REGULATED
+  DORMANT
 }
+
+User::status --> UserStatus
 
 @enduml
