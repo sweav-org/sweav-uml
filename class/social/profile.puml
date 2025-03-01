@@ -4,6 +4,7 @@
 class Profile {
   *id: Long
   +userId: Long
+  +displayId: String
   +name: String
   +description: String?
   +imagePath: String?
