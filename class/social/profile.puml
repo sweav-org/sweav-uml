@@ -53,4 +53,9 @@ enum UserRole {
   USER
 }
 
+Profile::presenceStatus --> PresenceStatus
+
+Profile::createdByRole --> UserRole
+Profile::modifiedByRole --> UserRole
+
 @enduml
