@@ -7,6 +7,9 @@ class User {
   +password: String?
   +status: UserStatus
   +name: String
+  +birthDate: Date
+  +gender: Gender
+
   ..
   createdAt: Instant
   createdById: Long
@@ -23,12 +26,19 @@ enum UserStatus {
   DORMANT
 }
 
+enum Gender {
+  FEMALE
+  MALE
+  NONE
+}
+
 enum UserRole {
   ADMIN
   USER
 }
 
 User::status --> UserStatus
+User::gender --> Gender
 User::createdByRole --> UserRole
 User::modifiedByRole --> UserRole
 
