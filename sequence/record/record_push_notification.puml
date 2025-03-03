@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Actor User
+Participant "Sweav App" as app
+Participant "로컬 DB" as localdb
+Participant "Sweav Server" as server
+
+User -> app: Login
+app -> server: [POST] /login API 호출
+server --> app: userId, accessToken, refreshToken
+
+app -> server: get settings
+server --> app: settings(Push 문구 목록 등)
+app -> localdb: settings 저장
+
+loop 매일
+    app -> localdb: 오늘 데이터 기록 확인
+    alt 데이터 기록 없음
+        app -> server: [GET] has-new API 호출
+        server --> app: hasNew: boolean
+        alt hasNew == false
+            app -> app: Push 문구 선택 (Push 문구 목록에서)
+            app -> app: 로컬 푸시 발송 (선택된 문구 사용)
+        else hasNew == true
+            app -> app: 서버에 기록이 있음. 푸시 발송 안함
+        end
+    else 데이터 기록 있음
+        app -> app: 로컬 DB에 기록이 있음. 푸시 발송 안함
+    end
+end
+
+@enduml
