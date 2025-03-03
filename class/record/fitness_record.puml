@@ -1,27 +1,47 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class ExerciseType {
+  *id: Long
+  +name: String
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Exercise {
+  *id: Long
+  +typeId: Long
+  +name: String
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
+}
+
+
+class FitnessRecord {
+  *id: Long
+  +userId: Long
+  +exerciseId: Long
+  +date: Instant
+  +completedSets: Int /' completedSets, timeSpent 중 하나만 기입 가능 '/
+  +timeSpent: Duration /' completedSets, timeSpent 중 하나만 기입 가능 '/
+  +caloriesBurned: Float
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
 @enduml
