@@ -1,27 +1,47 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class FoodCategory {
+  *id: Long
+  +name: String
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Food {
+  *id: Long
+  +name: String
+  +unitCalories: Int
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
+
+class DietRecord {
+  *id: Long
+  +userId: Long
+  +foodName: String
+  +calories: Float
+  +weight: Float
+  +photoUrl: String
+  +date: Instant
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
+}
+
 
 @enduml
