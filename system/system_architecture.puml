@@ -1,34 +1,26 @@
 @startuml
 'https://plantuml.com/component-diagram
 
+actor User
 
-package "User" {
-  HTTP - [First Component]
-  [Another Component]
+cloud "AWS Cloud" {
+    component "Internet Gateway" as IGW {
+        [Internet Access]
+    }
+
+    component "EC2 Instance" as EC2 {
+        [Application Server]
+        [Nginx/Node.js 등]
+    }
+
+    database "RDS MySQL" as RDS {
+        [Managed MySQL Database]
+        [Backup & Restore 지원]
+    }
 }
 
-node "Server" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
+User --> IGW : HTTP/HTTPS 요청
+IGW --> EC2 : HTTP/HTTPS 트래픽 전달
+EC2 --> RDS : MySQL 연결 (Port 3306)
 
 @enduml
