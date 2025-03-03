@@ -2,13 +2,14 @@
 'https://plantuml.com/class-diagram
 
 @startuml
-class HealthStatus {
+class PhysicalRecord {
   *id: Long
   +userId: Long
   +height: Float
   +weight: Float
   +age: Int
   +gender: Gender
+  +activityLevel: ActivityLevel
   ..
   createdAt: Instant
   createdById: Long
@@ -24,13 +25,22 @@ enum Gender {
   NONE
 }
 
+enum ActivityLevel {
+  SEDENTARY,
+  LIGHTLY_ACTIVE,
+  MODERATELY_ACTIVE,
+  ACTIVE,
+  VERY_ACTIVE,
+}
+
 enum UserRole {
   ADMIN
   USER
 }
 
-HealthStatus::gender --> Gender
-HealthStatus::createdByRole --> UserRole
-HealthStatus::modifiedByRole --> UserRole
+PhysicalRecord::gender --> Gender
+PhysicalRecord::ActivityLevel --> ActivityLevel
+PhysicalRecord::createdByRole --> UserRole
+PhysicalRecord::modifiedByRole --> UserRole
 
 @enduml
