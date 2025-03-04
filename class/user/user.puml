@@ -7,7 +7,7 @@ class User {
   +password: String?
   +status: UserStatus
   +name: String
-  +birthDate: Date
+  +birthDate: Date?
   +gender: Gender
   ..
   createdAt: Instant
