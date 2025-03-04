@@ -34,6 +34,10 @@ Profile::presenceStatus --> PresenceStatus
 Profile::createdByRole --> UserRole
 Profile::modifiedByRole --> UserRole
 
+note right of Profile::displayId
+  인스타그램 id 같은 개념
+end note
+
 note right of Profile::description
   상태 메시지
 end note
