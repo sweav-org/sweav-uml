@@ -1,28 +1,33 @@
 @startuml
 
-entity user {
-  *id: bigint(20)
-  ---
-  username: varchar(50)
-  email: varchar(100)
-  password: varchar(255)
-  created_at: timestamp
-}
-
 entity post {
   *id: bigint(20)
   ---
   user_id: bigint(20)
   content: text
+  status: varchar(50)
+  images: json
   created_at: timestamp
+  modified_at: timestamp
 }
 
-entity user_post_like {
+entity post_read_record {
   *id: bigint(20)
   ---
   user_id: bigint(20)
   post_id: bigint(20)
-  liked_at: timestamp
+  created_at: timestamp
+}
+
+entity reaction {
+  *id: bigint(20)
+  ---
+  expression: varchar(20)
+  parent_id: bigint(20)
+  user_id: bigint(20)
+  type: varchar(50)
+  created_at: timestamp
+  modified_at: timestamp
 }
 
 entity comment {
@@ -30,31 +35,19 @@ entity comment {
   ---
   user_id: bigint(20)
   post_id: bigint(20)
+  comment_id: bigint(20)
   content: text
   created_at: timestamp
-}
-
-entity post_image {
-  *id: bigint(20)
-  ---
-  post_id: bigint(20)
-  image_url: varchar(255)
-}
-
-entity push {
-  *id: bigint(20)
-  ---
-  user_id: bigint(20)
-  message: varchar(255)
-  sent_at: timestamp
+  modified_at: timestamp
 }
 
 user ||--o{ post
-user ||--o{ user_post_like
+user ||--o{ reaction
 user ||--o{ comment
-user ||--o{ push
 post ||--o{ comment
-post ||--o{ user_post_like
-post ||--o{ post_image
+post ||--o{ reaction
+user ||--o{ post_read_record
+post ||--o{ post_read_record
+comment ||--o{ comment
 
 @enduml
