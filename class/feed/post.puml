@@ -6,15 +6,27 @@ class Post {
   content: String
   status: Status
   images: List<String>
-  created_at: LocalDateTime
-  modified_at: LocalDateTime
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
 class PostReadRecord {
   id: Long
-  user_id: Long
-  post_id: Long
-  created_at: LocalDateTime
+  profile_id: Long
+  target_profile_id: Long
+  lastPostId: Long
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
 @enduml

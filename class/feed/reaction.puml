@@ -6,8 +6,13 @@ class Reaction {
   parent_id: Long
   user_id: Long
   type: Type
-  created_at: LocalDateTime
-  modified_at: LocalDateTime
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
 enum Expression {

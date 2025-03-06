@@ -6,8 +6,13 @@ class Comment {
   post_id: Long
   comment_id: Long
   content: String
-  created_at: LocalDateTime
-  modified_at: LocalDateTime
+  ..
+  createdAt: Instant
+  createdById: Long
+  createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
 @enduml

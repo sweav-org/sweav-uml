@@ -8,15 +8,25 @@ entity post {
   status: varchar(50)
   images: json
   created_at: timestamp
+  created_by_id: bigint(20)
+  created_by_role: varchar(20)
   modified_at: timestamp
+  modified_by_id: bigint(20)
+  modified_by_role: varchar(20)
 }
 
 entity post_read_record {
   *id: bigint(20)
   ---
   profile_id: bigint(20)
-  post_id: bigint(20)
+  target_profile_id: bigint(20)
+  last_post_id: bigint(20)
   created_at: timestamp
+  created_by_id: bigint(20)
+  created_by_role: varchar(20)
+  modified_at: timestamp
+  modified_by_id: bigint(20)
+  modified_by_role: varchar(20)
 }
 
 entity reaction {
@@ -27,7 +37,11 @@ entity reaction {
   profile_id: bigint(20)
   type: varchar(50)
   created_at: timestamp
+  created_by_id: bigint(20)
+  created_by_role: varchar(20)
   modified_at: timestamp
+  modified_by_id: bigint(20)
+  modified_by_role: varchar(20)
 }
 
 entity comment {
@@ -38,7 +52,11 @@ entity comment {
   comment_id: bigint(20)
   content: text
   created_at: timestamp
+  created_by_id: bigint(20)
+  created_by_role: varchar(20)
   modified_at: timestamp
+  modified_by_id: bigint(20)
+  modified_by_role: varchar(20)
 }
 
 profile ||--o{ post
