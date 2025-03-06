@@ -1,0 +1,25 @@
+@startuml
+autonumber
+
+actor User
+actor Writer
+participant "Frontend" as FE
+participant "Backend" as BE
+participant "Database" as DB
+participant "Firebase" as FCM
+
+User -> FE: 게시글 좋아요
+FE -> BE: 게시글 좋아요 API 호출
+BE -> DB: 게시글 업데이트
+
+alt 해당 좋아요가 처음인 경우
+  BE -> DB: 해당 게시글 작성자의 FCM 토큰 조회
+  DB -> BE: FCM 토큰 반환
+  BE -> FCM: FCM 토큰을 대상으로 푸시 알림 요청
+  FCM -> Writer: 푸시 알림 전송
+end
+
+BE --> FE: 좋아요 완료 응답
+FE --> User: 좋아요 완료
+
+@enduml
