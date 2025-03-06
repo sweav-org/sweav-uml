@@ -3,7 +3,7 @@
 entity post {
   *id: bigint(20)
   ---
-  user_id: bigint(20)
+  profile_id: bigint(20)
   content: text
   status: varchar(50)
   images: json
@@ -14,7 +14,7 @@ entity post {
 entity post_read_record {
   *id: bigint(20)
   ---
-  user_id: bigint(20)
+  profile_id: bigint(20)
   post_id: bigint(20)
   created_at: timestamp
 }
@@ -24,7 +24,7 @@ entity reaction {
   ---
   expression: varchar(20)
   parent_id: bigint(20)
-  user_id: bigint(20)
+  profile_id: bigint(20)
   type: varchar(50)
   created_at: timestamp
   modified_at: timestamp
@@ -33,7 +33,7 @@ entity reaction {
 entity comment {
   *id: bigint(20)
   ---
-  user_id: bigint(20)
+  profile_id: bigint(20)
   post_id: bigint(20)
   comment_id: bigint(20)
   content: text
@@ -41,12 +41,12 @@ entity comment {
   modified_at: timestamp
 }
 
-user ||--o{ post
-user ||--o{ reaction
-user ||--o{ comment
+profile ||--o{ post
+profile ||--o{ reaction
+profile ||--o{ comment
 post ||--o{ comment
 post ||--o{ reaction
-user ||--o{ post_read_record
+profile ||--o{ post_read_record
 post ||--o{ post_read_record
 comment ||--o{ comment
 
