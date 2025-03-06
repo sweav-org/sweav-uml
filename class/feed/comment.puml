@@ -1,27 +1,13 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
-}
-
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Comment {
+  id: Long
+  user_id: Long
+  post_id: Long
+  comment_id: Long
+  content: String
+  created_at: LocalDateTime
+  modified_at: LocalDateTime
 }
 
 @enduml

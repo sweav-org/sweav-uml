@@ -1,0 +1,25 @@
+@startuml
+
+class Reaction {
+  id: Long
+  expression: Expression
+  parent_id: Long
+  user_id: Long
+  type: Type
+  created_at: LocalDateTime
+  modified_at: LocalDateTime
+}
+
+enum Expression {
+  LIKE
+}
+
+enum Type {
+  POST
+  COMMENT
+}
+
+Reaction::expression --> Expression
+Reaction::type --> Type
+
+@enduml
