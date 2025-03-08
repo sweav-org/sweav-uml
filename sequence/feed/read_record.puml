@@ -1,0 +1,16 @@
+@startuml
+autonumber
+
+actor User
+participant "Frontend" as FE
+participant "Backend" as BE
+
+User -> FE: 피드 조회
+FE -> BE: 게시글 조회 API 요청
+BE -> FE: 게시글 반환
+FE -> BE: 최근 본 게시글 업데이트 API 요청
+BE -> BE: 해당 유저의 최근 본 게시글 갱신
+BE -> FE: 완료 응답
+FE -> User: 읽음 처리
+
+@enduml
