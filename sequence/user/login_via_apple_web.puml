@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor 사용자
+participant "웹 앱 (브라우저)" as Client
+participant "Apple 인증 서버" as Apple
+participant "서비스 서버" as Server
+
+사용자 -> Client : "Sign in with Apple" 클릭
+Client -> Apple : 로그인 요청 (OAuth)
+Apple -> Client : Authorization Code 발급 (Redirect URI로 전달)
+Client -> Server : Authorization Code 전달
+
+Server -> Apple : Access Token 요청 (Authorization Code 포함)
+Apple -> Server : Access Token + Refresh Token 발급
+Server -> Apple : 사용자 정보 요청
+Apple -> Server : 사용자 정보 반환
+
+alt 신규 유저
+    Server -> Server : 자체 회원가입 처리
+    Server -> Client : 자체 서비스 JWT 발급 (회원가입 완료)
+else 기존 유저
+    Server -> Client : 자체 서비스 JWT 발급 (로그인 완료)
+end
+
+Client -> 사용자 : 서비스 로그인 완료 (자체 JWT 저장)
+
+@enduml
