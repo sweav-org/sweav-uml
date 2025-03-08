@@ -9,6 +9,9 @@ class Relationship {
   createdAt: Instant
   createdById: Long
   createdByRole: UserRole
+  modifiedAt: Instant
+  modifiedById: Long
+  modifiedByRole: UserRole
 }
 
 enum RelationshipStatus {

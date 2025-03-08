@@ -8,8 +8,8 @@ class FitnessGoal {
   +dailyExerciseCalories: Int
   +exerciseFrequency: Int
   +exercisePlan: TEXT
-  +diet_plan: TEXT
-  +deadline: DATE
+  +dietPlan: TEXT
+  +deadline: Date
   ..
   createdAt: Instant
   createdById: Long
