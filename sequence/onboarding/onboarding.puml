@@ -5,13 +5,41 @@ actor 사용자
 participant "앱" as app
 participant "웹" as web
 participant "서버" as server
+participant "AWS S3" as s3
 
-사용자 -> app : 회원가입 완료 
+사용자 -> app : 회원가입 완료
+app -> server : 내 프로필 조회 API (GET /v1/profiles/me)
+server --> app : 생성된 프로필 정보 전달
 app -> app : 아이디, 닉네임 정보 입력
 app -> web : {"accessToken":"token", "id":"id","nickname":"nickname"}
-web -> app : 현재까지의 onboarding json data 전달
+web --> app : 현재까지의 onboarding json data 전달
 app -> web : 사진 binary data 추가 후 전달
 web -> web : 나머지 정보 입력
-web -> app : 현재까지의 onboarding json data 전달
+web --> app : 현재까지의 onboarding json data 전달
 app -> app : 건강앱 정보 추가
-app -> server : onboarding json data 전달
+app -> server : 업로드 URL(presigned URL) 발급 요청 API (POST /v1/misc/signed-urls)
+server --> app : 업로드 URL 전달
+app -> s3 : 프로필 이미지 업로드
+
+app -> server : 온보딩 정보 저장 API 호출 (POST /v1/onboarding)
+
+activate server
+note right of server
+/v1/onboarding API는 아래의 API들을 병렬로 호출한 것과 동일한 효과를 가집니다:
+- POST /v1/profiles
+- POST /v1/health/biometrics
+- POST /v1/fitness/goals
+end note
+
+par 프로필 수정
+    server -> server : 프로필 수정 API 호출 (POST /v1/profiles)
+end par
+par 신체 정보 설정
+    server -> server : 신체 정보 설정 API 호출 (POST /v1/health/biometrics)
+end par
+par 운동 목표 설정
+    server -> server : 운동 목표 설정 API 호출 (POST /v1/fitness/goals)
+end par
+
+deactivate server
+@enduml
