@@ -1,9 +1,14 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class ExerciseType {
+class FitnessRecord {
   *id: Long
-  +name: String
+  +userId: Long
+  +exerciseId: Long
+  +date: Instant
+  +timeSpent: Int /' timeSpent or liftingWeight, completedSets 중 하나만 기입 가능 '/
+  +liftingWeight: Int /' timeSpent or liftingWeight, completedSets 중 하나만 기입 가능 '/
+  +completedSets: Int /' timeSpent or liftingWeight, completedSets 중 하나만 기입 가능 '/
   ..
   createdAt: Instant
   createdById: Long
@@ -15,26 +20,9 @@ class ExerciseType {
 
 class Exercise {
   *id: Long
-  +typeId: Long
+  +type_name: String
   +name: String
-  ..
-  createdAt: Instant
-  createdById: Long
-  createdByRole: UserRole
-  modifiedAt: Instant
-  modifiedById: Long
-  modifiedByRole: UserRole
-}
-
-
-class FitnessRecord {
-  *id: Long
-  +userId: Long
-  +exerciseId: Long
-  +date: Instant
-  +completedSets: Int /' completedSets, timeSpent 중 하나만 기입 가능 '/
-  +timeSpent: Duration /' completedSets, timeSpent 중 하나만 기입 가능 '/
-  +caloriesBurned: Float
+  +mets: Double
   ..
   createdAt: Instant
   createdById: Long

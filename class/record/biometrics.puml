@@ -2,7 +2,7 @@
 'https://plantuml.com/class-diagram
 
 @startuml
-class PhysicalRecord {
+class Biometrics {
   *id: Long
   +userId: Long
   +height: Float
@@ -38,9 +38,9 @@ enum UserRole {
   USER
 }
 
-PhysicalRecord::gender --> Gender
-PhysicalRecord::ActivityLevel --> ActivityLevel
-PhysicalRecord::createdByRole --> UserRole
-PhysicalRecord::modifiedByRole --> UserRole
+Biometrics::gender --> Gender
+Biometrics::ActivityLevel --> ActivityLevel
+Biometrics::createdByRole --> UserRole
+Biometrics::modifiedByRole --> UserRole
 
 @enduml

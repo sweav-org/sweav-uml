@@ -15,6 +15,7 @@ class Relationship {
 }
 
 enum RelationshipStatus {
+  REQUESTED
   FOLLOWING
   BLOCKING
 }
